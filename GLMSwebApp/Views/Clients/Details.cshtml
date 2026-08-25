@@ -1,0 +1,22 @@
+﻿@model GLMS.Web.Models.Client
+<h2>Client: @Model.Name</h2>
+<p><strong>Contact:</strong> @Model.ContactDetails</p>
+<p><strong>Region:</strong> @Model.Region</p>
+<h4>Contracts</h4>
+<ul>
+    @foreach (var c in Model.Contracts)
+    {
+        <li>@c.ServiceLevel — @c.Status</li>
+    }
+</ul>
+<a asp-action="Index" class="btn btn-secondary">Back</a>
+
+
+@*
+    Code Attribution
+    Title: Overview of ASP.NET Core MVC Views
+    Author: Microsoft
+    Date: 2026
+    Version: ASP.NET Core (.NET 10.0 documentation)
+    Availability: https://learn.microsoft.com/en-us/aspnet/core/mvc/views/overview
+*@

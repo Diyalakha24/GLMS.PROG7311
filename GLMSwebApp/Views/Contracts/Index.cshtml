@@ -1,0 +1,62 @@
+﻿@model IEnumerable<GLMS.Web.Models.Contract>
+<h2>Contracts</h2>
+<a asp-action="Create" class="btn btn-primary mb-3">+ New Contract</a>
+
+<form method="get" class="row g-2 mb-3">
+    <div class="col-auto">
+        <select name="status" class="form-select">
+            <option value="">All Statuses</option>
+            <option value="Draft">Draft</option>
+            <option value="Active">Active</option>
+            <option value="Expired">Expired</option>
+            <option value="On Hold">On Hold</option>
+        </select>
+    </div>
+    <div class="col-auto">
+        <input type="date" name="startDate" class="form-control" placeholder="Start Date" />
+    </div>
+    <div class="col-auto">
+        <input type="date" name="endDate" class="form-control" placeholder="End Date" />
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-outline-primary">Filter</button>
+    </div>
+</form>
+
+<table class="table table-bordered">
+    <thead>
+        <tr><th>Client</th><th>Service Level</th><th>Status</th><th>Start</th><th>End</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.Client?.Name</td>
+                <td>@c.ServiceLevel</td>
+                <td>@c.Status</td>
+                <td>@c.StartDate.ToShortDateString()</td>
+                <td>@c.EndDate.ToShortDateString()</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@c.Id" class="btn btn-info btn-sm">Details</a>
+                    <a asp-action="Edit" asp-route-id="@c.Id" class="btn btn-warning btn-sm">Edit</a>
+                    @if (!string.IsNullOrEmpty(c.SignedAgreementPath))
+                    {
+                        <a asp-action="Download" asp-route-fileName="@c.SignedAgreementPath"
+                           class="btn btn-success btn-sm">Download PDF</a>
+                    }
+                    <a asp-action="Delete" asp-route-id="@c.Id" class="btn btn-danger btn-sm"
+                       onclick="return confirm('Delete?')">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@*
+    Code Attribution
+    Title: Overview of ASP.NET Core MVC Views
+    Author: Microsoft
+    Date: 2026
+    Version: ASP.NET Core (.NET 10.0 documentation)
+    Availability: https://learn.microsoft.com/en-us/aspnet/core/mvc/views/overview
+*@

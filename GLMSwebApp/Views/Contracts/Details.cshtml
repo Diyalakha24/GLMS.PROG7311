@@ -1,0 +1,40 @@
+﻿@using System.Globalization
+@model GLMS.Web.Models.Contract
+
+<h2>Contract Details</h2>
+
+<p><strong>Client:</strong> @Model.Client?.Name</p>
+<p><strong>Service Level:</strong> @Model.ServiceLevel</p>
+<p><strong>Status:</strong> @Model.Status</p>
+<p><strong>Start:</strong> @Model.StartDate.ToShortDateString()</p>
+<p><strong>End:</strong> @Model.EndDate.ToShortDateString()</p>
+
+@if (!string.IsNullOrEmpty(Model.SignedAgreementPath))
+{
+    <a asp-action="Download" asp-route-fileName="@Model.SignedAgreementPath"
+       class="btn btn-success">
+        Download Signed Agreement
+    </a>
+}
+
+<h4 class="mt-3">Service Requests</h4>
+
+<ul>
+    @foreach (var r in Model.ServiceRequests)
+    {
+        <li>
+            @r.Description — @r.CostZAR.ToString("C2", CultureInfo.CreateSpecificCulture("en-ZA"))
+        </li>
+    }
+</ul>
+
+<a asp-action="Index" class="btn btn-secondary mt-2">Back</a>
+
+@*
+    Code Attribution
+    Title: Overview of ASP.NET Core MVC Views
+    Author: Microsoft
+    Date: 2026
+    Version: ASP.NET Core (.NET 10.0 documentation)
+    Availability: https://learn.microsoft.com/en-us/aspnet/core/mvc/views/overview
+*@

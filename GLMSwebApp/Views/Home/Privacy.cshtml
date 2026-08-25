@@ -1,0 +1,176 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+
+<style>
+    @@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap');
+
+    .privacy-header {
+        padding: 64px 0 40px;
+        border-bottom: 1px solid #e8e8e8;
+        margin-bottom: 56px;
+    }
+
+    .privacy-tag {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #888;
+        margin-bottom: 16px;
+    }
+
+    .privacy-title {
+        font-family: 'DM Serif Display', serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 400;
+        color: #111;
+        letter-spacing: -0.02em;
+        margin-bottom: 12px;
+    }
+
+    .privacy-date {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.85rem;
+        color: #aaa;
+        font-weight: 300;
+    }
+
+    .privacy-body {
+        max-width: 680px;
+        padding-bottom: 80px;
+    }
+
+    .privacy-section {
+        margin-bottom: 48px;
+        padding-bottom: 48px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+        .privacy-section:last-child {
+            border-bottom: none;
+        }
+
+    .privacy-section-number {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #2563eb;
+        margin-bottom: 10px;
+    }
+
+    .privacy-section-title {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: #111;
+        margin-bottom: 14px;
+    }
+
+    .privacy-section p {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.9rem;
+        color: #555;
+        line-height: 1.8;
+        font-weight: 300;
+        margin-bottom: 12px;
+    }
+
+    .privacy-highlight {
+        background: #f7f9ff;
+        border-left: 3px solid #2563eb;
+        padding: 16px 20px;
+        border-radius: 0 6px 6px 0;
+        margin: 20px 0;
+    }
+
+        .privacy-highlight p {
+            margin: 0;
+            color: #333;
+            font-weight: 400 !important;
+        }
+</style>
+
+<div class="privacy-header">
+    <p class="privacy-tag">Legal</p>
+    <h1 class="privacy-title">Privacy Policy</h1>
+    <p class="privacy-date">Last updated — April 2026</p>
+</div>
+
+<div class="privacy-body">
+
+    <div class="privacy-section">
+        <p class="privacy-section-number">01</p>
+        <p class="privacy-section-title">Overview</p>
+        <p>
+            The Global Logistics Management System (GLMS) is an internal enterprise platform developed for TechMove Logistics. This policy outlines how data is collected, stored, and used within the system.
+        </p>
+        <div class="privacy-highlight">
+            <p>GLMS is an internal system. All data entered is used solely for operational logistics management purposes and is not shared with third parties.</p>
+        </div>
+    </div>
+
+    <div class="privacy-section">
+        <p class="privacy-section-number">02</p>
+        <p class="privacy-section-title">Data We Collect</p>
+        <p>GLMS collects and stores the following information to operate effectively:</p>
+        <p><strong>Client Data</strong> — Names, contact details, and regional information for clients linked to contracts.</p>
+        <p><strong>Contract Data</strong> — Contract dates, service levels, statuses, and uploaded signed agreement documents (PDF format only).</p>
+        <p><strong>Service Request Data</strong> — Descriptions, costs in USD and ZAR, and request statuses linked to active contracts.</p>
+    </div>
+
+    <div class="privacy-section">
+        <p class="privacy-section-number">03</p>
+        <p class="privacy-section-title">File Uploads</p>
+        <p>
+            GLMS allows users to upload signed agreement documents in PDF format only. Files are stored securely on the server file system. File names are randomised using a UUID to prevent conflicts and unauthorised access.
+        </p>
+        <p>
+            Only authorised users of the system are able to download stored documents via the platform interface.
+        </p>
+    </div>
+
+    <div class="privacy-section">
+        <p class="privacy-section-number">04</p>
+        <p class="privacy-section-title">External API Usage</p>
+        <p>
+            GLMS connects to an external currency exchange API (open.er-api.com) to retrieve live USD to ZAR conversion rates. No personal or business data is sent to this service — only a request for the current exchange rate is made.
+        </p>
+        <p>
+            If the external API is unavailable, the system falls back to a default exchange rate to ensure uninterrupted operation.
+        </p>
+    </div>
+
+    <div class="privacy-section">
+        <p class="privacy-section-number">05</p>
+        <p class="privacy-section-title">Data Storage & Security</p>
+        <p>
+            All data is stored in a SQL Server database hosted locally or on an internal server. The system uses Entity Framework Core with parameterised queries to protect against SQL injection.
+        </p>
+        <p>
+            Connection strings and sensitive configuration values are stored in <code>appsettings.json</code> and are not exposed to end users.
+        </p>
+    </div>
+
+    <div class="privacy-section">
+        <p class="privacy-section-number">06</p>
+        <p class="privacy-section-title">Contact</p>
+        <p>
+            This system was developed as part of the PROG7311 Programming 3A module at The Independent Institute of Education (IIE). For any queries related to data handling within this system, please contact the development team through your institution.
+        </p>
+    </div>
+
+</div>
+
+@*
+    Code Attribution
+    Title: Overview of ASP.NET Core MVC Views
+    Author: Microsoft
+    Date: 2026
+    Version: ASP.NET Core (.NET 10.0 documentation)
+    Availability:
+    https://learn.microsoft.com/en-us/aspnet/core/mvc/views/overview?view=aspnetcore-10.0
+*@

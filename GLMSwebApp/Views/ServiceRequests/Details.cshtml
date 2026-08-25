@@ -1,0 +1,22 @@
+﻿@model GLMS.Web.Models.ServiceRequest
+
+<h2>Service Request Details</h2>
+
+<p><strong>Contract:</strong> @Model.Contract?.ServiceLevel</p>
+<p><strong>Description:</strong> @Model.Description</p>
+<p><strong>Cost (USD):</strong> $@Model.CostUSD</p>
+
+<p><strong>Cost (ZAR):</strong> R @Model.CostZAR.ToString("N2")</p>
+
+<p><strong>Status:</strong> @Model.Status</p>
+
+<a asp-action="Index" class="btn btn-secondary">Back</a>
+
+@*
+    Code Attribution
+    Title: Overview of ASP.NET Core MVC Views
+    Author: Microsoft
+    Date: 2026
+    Version: ASP.NET Core (.NET 10.0 documentation)
+    Availability: https://learn.microsoft.com/en-us/aspnet/core/mvc/views/overview
+*@

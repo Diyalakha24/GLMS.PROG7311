@@ -1,0 +1,77 @@
+version: '3.8'
+
+services:
+
+  # ── Container 1: SQL Server Database ────────────────────────────────────────
+  sql-server-db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sql-server-db
+    environment:
+      SA_PASSWORD: "YourStrong@Passw0rd"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Express"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqldata:/var/opt/mssql
+    networks:
+      - glms-network
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P 'YourStrong@Passw0rd' -Q 'SELECT 1' -No || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+
+  # ── Container 2: GLMS Backend API ───────────────────────────────────────────
+  glms-backend-api:
+    build:
+      context: .
+      dockerfile: GLMS.API/Dockerfile
+    container_name: glms-backend-api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ConnectionStrings__DefaultConnection: "Server=sql-server-db,1433;Database=GLMSDB;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True;"
+      Jwt__Key: "GLMS_SuperSecretKey_MustBe32CharsLong!"
+      Jwt__Issuer: "GLMS.API"
+      Jwt__Audience: "GLMS.Web"
+    ports:
+      - "5000:8080"
+    depends_on:
+      sql-server-db:
+        condition: service_healthy
+    networks:
+      - glms-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/swagger/index.html || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  # ── Container 3: GLMS Frontend MVC ──────────────────────────────────────────
+  glms-frontend-web:
+    build:
+      context: .
+      dockerfile: GLMSwebApp/Dockerfile
+    container_name: glms-frontend-web
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ApiBaseUrl: "http://glms-backend-api:8080/"
+    ports:
+      - "5002:8080"
+    depends_on:
+      glms-backend-api:
+        condition: service_healthy
+    networks:
+      - glms-network
+    volumes:
+      - uploads:/app/wwwroot/uploads
+
+volumes:
+  sqldata:
+  uploads:
+
+networks:
+  glms-network:
+    driver: bridge

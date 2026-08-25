@@ -1,0 +1,275 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<style>
+    @@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap');
+
+    .hero-section {
+        padding: 80px 0 60px;
+        border-bottom: 1px solid #e8e8e8;
+    }
+
+    .hero-tag {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #888;
+        margin-bottom: 20px;
+    }
+
+    .hero-title {
+        font-family: 'DM Serif Display', serif;
+        font-size: clamp(2.8rem, 5vw, 4.2rem);
+        font-weight: 400;
+        line-height: 1.1;
+        color: #111;
+        margin-bottom: 24px;
+        letter-spacing: -0.02em;
+    }
+
+    .hero-title span {
+        color: #2563eb;
+    }
+
+    .hero-subtitle {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 1.05rem;
+        color: #555;
+        max-width: 520px;
+        line-height: 1.7;
+        font-weight: 300;
+        margin-bottom: 40px;
+    }
+
+    .hero-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .btn-primary-custom {
+        background: #111;
+        color: #fff;
+        padding: 12px 28px;
+        border-radius: 6px;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: background 0.2s;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-primary-custom:hover {
+        background: #2563eb;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .btn-outline-custom {
+        background: transparent;
+        color: #111;
+        padding: 12px 28px;
+        border-radius: 6px;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.2s;
+        border: 1.5px solid #ddd;
+    }
+
+    .btn-outline-custom:hover {
+        border-color: #111;
+        color: #111;
+        text-decoration: none;
+    }
+
+    .stats-row {
+        padding: 48px 0;
+        border-bottom: 1px solid #e8e8e8;
+        display: flex;
+        gap: 48px;
+        flex-wrap: wrap;
+    }
+
+    .stat-item {
+        font-family: 'DM Sans', sans-serif;
+    }
+
+    .stat-number {
+        font-family: 'DM Serif Display', serif;
+        font-size: 2.4rem;
+        color: #111;
+        line-height: 1;
+        margin-bottom: 4px;
+    }
+
+    .stat-label {
+        font-size: 0.82rem;
+        color: #888;
+        font-weight: 400;
+        letter-spacing: 0.03em;
+    }
+
+    .features-section {
+        padding: 64px 0;
+    }
+
+    .section-label {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #888;
+        margin-bottom: 40px;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1px;
+        background: #e8e8e8;
+        border: 1px solid #e8e8e8;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .feature-card {
+        background: #fff;
+        padding: 36px 32px;
+        transition: background 0.2s;
+    }
+
+    .feature-card:hover {
+        background: #fafafa;
+    }
+
+    .feature-icon {
+        font-size: 1.4rem;
+        margin-bottom: 16px;
+    }
+
+    .feature-title {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #111;
+        margin-bottom: 10px;
+    }
+
+    .feature-desc {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.85rem;
+        color: #777;
+        line-height: 1.65;
+        font-weight: 300;
+    }
+
+    .cta-section {
+        padding: 64px 0;
+        border-top: 1px solid #e8e8e8;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+
+    .cta-text {
+        font-family: 'DM Serif Display', serif;
+        font-size: 1.8rem;
+        color: #111;
+        font-weight: 400;
+    }
+</style>
+
+<div class="hero-section">
+    <p class="hero-tag">Global Logistics Management System</p>
+    <h1 class="hero-title">
+        Manage contracts,<br>
+        clients & <span>service requests</span><br>
+        in one place.
+    </h1>
+    <p class="hero-subtitle">
+        GLMS replaces scattered spreadsheets and manual workflows with a unified platform built for TechMove Logistics' global operations.
+    </p>
+    <div class="hero-actions">
+        <a asp-controller="Contracts" asp-action="Index" class="btn-primary-custom">View Contracts</a>
+        <a asp-controller="Clients" asp-action="Index" class="btn-outline-custom">Manage Clients</a>
+    </div>
+</div>
+
+<div class="stats-row">
+    <div class="stat-item">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Core Modules</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number">4</div>
+        <div class="stat-label">Contract Statuses</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number">Live</div>
+        <div class="stat-label">USD → ZAR Rates</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number">PDF</div>
+        <div class="stat-label">Document Storage</div>
+    </div>
+</div>
+
+<div class="features-section">
+    <p class="section-label">Platform Features</p>
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">📋</div>
+            <div class="feature-title">Contract Management</div>
+            <div class="feature-desc">Centralised repository for all client contracts with automated status tracking — Draft, Active, Expired, and On Hold.</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🔗</div>
+            <div class="feature-title">Service Requests</div>
+            <div class="feature-desc">Raise and track service requests linked to active contracts. Expired contracts are automatically blocked from new requests.</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">💱</div>
+            <div class="feature-title">Currency Conversion</div>
+            <div class="feature-desc">Live USD to ZAR conversion using an external exchange rate API. All costs are automatically calculated and stored in Rands.</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📁</div>
+            <div class="feature-title">Document Storage</div>
+            <div class="feature-desc">Upload and store signed PDF agreements per contract. Files are securely saved to the server and available for download anytime.</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🔍</div>
+            <div class="feature-title">Search & Filter</div>
+            <div class="feature-desc">Filter contracts by status and date range using LINQ queries, making it easy to find exactly what you need.</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">👥</div>
+            <div class="feature-title">Client Profiles</div>
+            <div class="feature-desc">Maintain detailed client records including contact details and region, with full visibility of linked contracts per client.</div>
+        </div>
+    </div>
+</div>
+
+<div class="cta-section">
+    <div class="cta-text">Ready to get started?</div>
+    <a asp-controller="Clients" asp-action="Create" class="btn-primary-custom">Add Your First Client →</a>
+</div>
+
+@*
+    Code Attribution
+    Title: Overview of ASP.NET Core MVC Views
+    Author: Microsoft
+    Date: 2026
+    Version: ASP.NET Core (.NET 10.0 documentation)
+    Availability: https://learn.microsoft.com/en-us/aspnet/core/mvc/views/overview
+*@

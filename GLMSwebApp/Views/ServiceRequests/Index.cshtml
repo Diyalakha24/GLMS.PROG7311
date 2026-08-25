@@ -1,0 +1,41 @@
+﻿@model IEnumerable<GLMS.Web.Models.ServiceRequest>
+<h2>Service Requests</h2>
+<a asp-action="Create" class="btn btn-primary mb-3">+ New Request</a>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Contract</th>
+            <th>Description</th>
+            <th>Cost (USD)</th>
+            <th>Cost (ZAR)</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model)
+        {
+            <tr>
+                <td>@r.Contract?.ServiceLevel</td>
+                <td>@r.Description</td>
+                <td>$@r.CostUSD.ToString("N2")</td>
+                <td>R @r.CostZAR.ToString("N2")</td>
+                <td>@r.Status</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@r.Id" class="btn btn-info btn-sm">Details</a>
+                    <a asp-action="Delete" asp-route-id="@r.Id" class="btn btn-danger btn-sm"
+                       onclick="return confirm('Delete?')">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@*
+    Code Attribution
+    Title: Overview of ASP.NET Core MVC Views
+    Author: Microsoft
+    Date: 2026
+    Version: ASP.NET Core (.NET 10.0 documentation)
+    Availability: https://learn.microsoft.com/en-us/aspnet/core/mvc/views/overview
+*@
